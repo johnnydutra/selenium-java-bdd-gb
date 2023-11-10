@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePO;
 
-public class ContactUs extends BasePO {
+public class ContactUsSteps extends BasePO {
     private WebDriver driver = getDriver();
 
     @Given("I access the WebDriver University Contact Us page")
