@@ -1,6 +1,5 @@
 package pageObjects;
 
-import core.Constants;
 import drivers.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static core.Constants.*;
 
 public class BasePO {
     private final WebDriverWait wait = setWait();
@@ -23,11 +24,11 @@ public class BasePO {
     }
 
     public void navigateTo(String url) {
-        getDriver().get(Constants.WEBDRIVERUNI_BASE_URL + url);
+        getDriver().get(WEBDRIVERUNI_BASE_URL + url);
     }
 
     public WebDriverWait setWait() {
-        return new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(DEFAULT_TIMEOUT));
     }
 
     public void sendKeys(By by, String text) {

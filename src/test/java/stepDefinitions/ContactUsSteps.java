@@ -1,12 +1,8 @@
 package stepDefinitions;
 
-import core.Support;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePO;
 import pageObjects.ContactUsPO;
@@ -45,19 +41,19 @@ public class ContactUsSteps extends BasePO {
 
     @When("I enter a specific first name {string}")
     public void i_enter_a_specific_first_name(String firstName) {
-        driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys(firstName);
+        contactUs.setSpecificFirstName(firstName);
     }
     @When("I enter a specific last name {string}")
     public void i_enter_a_specific_last_name(String lastName) {
-        driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys(lastName);
+        contactUs.setSpecificLastName(lastName);
     }
     @When("I enter a specific e-mail address {string}")
     public void i_enter_a_specific_e_mail_address(String emailAddress) {
-        driver.findElement(By.xpath("//input[@name='email']")).sendKeys(emailAddress);
+        contactUs.setSpecificEmailAddress(emailAddress);
     }
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
-        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(comment);
+        contactUs.setSpecificComment(comment);
     }
 
     @When("I click the Submit button")

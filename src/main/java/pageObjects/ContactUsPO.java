@@ -15,7 +15,6 @@ public class ContactUsPO extends BasePO {
     private @FindBy(how = How.XPATH, using = "//input[@value='SUBMIT']") WebElement submitButton;
     private @FindBy(how = How.XPATH, using = "//div[@id='contact_reply']/h1") WebElement formSubmissionMessage;
 
-
     public ContactUsPO() {
         super();
     }
