@@ -9,33 +9,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePO;
+import pageObjects.ContactUsPO;
 
 public class ContactUsSteps extends BasePO {
-    private WebDriver driver = getDriver();
+    private final ContactUsPO contactUs;
+
+    public ContactUsSteps(ContactUsPO contactUs) {
+        this.contactUs = contactUs;
+    }
 
     @Given("I access the WebDriver University Contact Us page")
     public void i_access_the_web_driver_university_contact_us_page() {
-        navigateTo("/Contact-Us/contactus.html");
+        contactUs.accessThis();
     }
 
     @When("I enter an unique first name")
     public void i_enter_an_unique_first_name() {
-        sendKeys(By.xpath("//input[@name='first_name']"), "AutoFN" + Support.generateRandomNumber(5));
+        contactUs.setUniqueFirstName();
     }
 
     @When("I enter an unique last name")
     public void i_enter_an_unique_last_name() {
-        driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys("AutoLN" + Support.generateRandomNumber(5));
+        contactUs.setUniqueLastName();
     }
 
     @When("I enter an unique e-mail address")
     public void i_enter_an_unique_e_mail_address() {
-        driver.findElement(By.xpath("//input[@name='email']")).sendKeys("AutoEM" + Support.generateRandomNumber(5) + "@mail.com");
+        contactUs.setUniqueEmailAddress();
     }
 
     @When("I enter an unique comment")
     public void i_enter_an_unique_comment() {
-        driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(Support.generateRandomString(20));
+        contactUs.setUniqueComment();
     }
 
     @When("I enter a specific first name {string}")
@@ -57,12 +62,11 @@ public class ContactUsSteps extends BasePO {
 
     @When("I click the Submit button")
     public void i_click_the_submit_button() {
-        driver.findElement(By.xpath("//input[@value='SUBMIT']")).click();
+        contactUs.clickSubmitButton();
     }
 
     @Then("I should be presented with a successful Contact Us form submission message")
     public void i_should_be_presented_with_a_successful_contact_us_form_submission_message() {
-        WebElement contactUsSubmissionMessage = driver.findElement(By.xpath("//div[@id='contact_reply']/h1"));
-        Assert.assertEquals(contactUsSubmissionMessage.getText(), "Thank You for your Message!");
+        Assert.assertEquals(contactUs.getFormSubmissionMessageText(), "Thank You for your Message!");
     }
 }

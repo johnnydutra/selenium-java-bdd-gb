@@ -50,4 +50,12 @@ public class BasePO {
         wait.until(ExpectedConditions.alertIsPresent());
         return getDriver().switchTo().alert().getText();
     }
+
+    public String getElementText(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element)).getText();
+    }
+
+    public String getElementText(By by) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by)).getText();
+    }
 }
